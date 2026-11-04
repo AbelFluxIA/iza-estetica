@@ -52,7 +52,7 @@ Evitar: fotos de banco de imagens e fotos de pele de outras pessoas tiradas da i
 
 Tudo abaixo está marcado no HTML com comentários `A CONFIRMAR`. O site funciona sem essas respostas, mas fica melhor com elas.
 
-1. **Protocolos oferecidos** — validar os 6 itens da seção "Protocolos" (limpeza de pele; manchas/melasma com clareadores e peeling superficial; acne adulta; viço e firmeza facial com equipamentos faciais e massagem; corpo com drenagem/modeladora/equipamentos; massagem relaxante). Remover o que ela não faz.
+1. **Serviços** — já estão os 6 do catálogo oficial dela no WhatsApp (limpeza de pele, microagulhamento, revitalização facial, ventosaterapia, massagem relaxante, drenagem linfática), com as fotos do catálogo. Atenção ao **microagulhamento**: a legalidade para esteticistas é contestada (Nota Técnica Anvisa 02/2024 diz que produtos aplicados por microagulhamento não são cosméticos; os efeitos da nota estão suspensos desde 23/09/2026 enquanto um grupo de trabalho reavalia, mas a suspensão "não autoriza prática que a legislação veda"; o TJDFT negou licença a uma esteticista para microagulhamento em jul/2025). Ela já anuncia no catálogo, então a decisão é dela; o item é fácil de remover se preferir. A foto foi recortada para não mostrar a seringa.
 2. **Endereço** — rua, número e bairro (FAQ "Onde fica", seção "Onde fica", mapa, página de links).
 3. **Dias e horários** — inclusive se atende sábado ou fim de tarde.
 4. **Registro Anvisa e biossegurança** — se ela confirmar que todos os produtos e equipamentos têm registro e que usa descartáveis, vale acrescentar "produtos e equipamentos com registro na Anvisa" na barra de credenciais e no "Sobre": é um sinal de confiança forte.

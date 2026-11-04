@@ -476,15 +476,22 @@ h1 em, h2 em { font-style: italic; font-weight: 300; color: var(--gold-text); }
 .protocols { border-top: 1px solid var(--gold-soft); }
 .protocol {
   display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 20px;
-  row-gap: 8px;
+  grid-template-columns: 104px 1fr;
+  grid-template-areas: "photo num" "photo head" "desc desc" "meta meta";
+  column-gap: 18px;
+  row-gap: 10px;
   padding: 28px 0;
   border-bottom: 1px solid var(--gold-soft);
   align-items: start;
+  align-content: start;
 }
-.protocol__num { font: 300 1.75rem / 1 var(--font-display); color: var(--gold-text); padding-top: 4px; transition: color .25s; min-width: 2ch; }
-.protocol__body { display: grid; gap: 8px; }
+.protocol__photo { grid-area: photo; position: relative; width: 104px; aspect-ratio: 4 / 5; }
+.protocol__photo img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 999px 999px var(--r-card) var(--r-card); filter: sepia(.06) saturate(1.05) contrast(.97); }
+.protocol__photo::after { content: ""; position: absolute; inset: -6px; border: 1px solid var(--gold-soft); border-radius: 999px 999px 7px 7px; pointer-events: none; transition: border-color .25s; }
+.protocol__num { grid-area: num; align-self: end; font: 500 .75rem / 1 var(--font-sans); letter-spacing: .2em; color: var(--gold-text); transition: color .25s; }
+.protocol__head { grid-area: head; align-self: start; }
+.protocol__desc { grid-area: desc; }
+.protocol__meta { grid-area: meta; }
 .protocol__title {
   font: 500 1.5rem / 1.15 var(--font-display);
   display: flex;
@@ -519,8 +526,10 @@ h1 em, h2 em { font-style: italic; font-weight: 300; color: var(--gold-text); }
   .protocol:hover .protocol__title::before { width: 24px; margin-right: 12px; }
 }
 @media (min-width: 900px) {
-  .protocol { column-gap: 32px; padding: 32px 0; }
-  .protocol__num { font-size: 2rem; }
+  .protocol { grid-template-columns: 2.5rem 150px 1fr; grid-template-areas: "num photo head" "num photo desc" "num photo meta"; column-gap: 28px; row-gap: 10px; padding: 32px 0; }
+  .protocol__num { align-self: start; font: 300 2rem / 1 var(--font-display); letter-spacing: 0; padding-top: 2px; }
+  .protocol__photo { width: 150px; }
+  .protocol:hover .protocol__photo::after { border-color: var(--gold); }
 }
 
 .aside-card {
@@ -1076,106 +1085,130 @@ h1 em, h2 em { font-style: italic; font-weight: 300; color: var(--gold-text); }
         </div>
         <ul class="concerns">
           <li class="concern reveal">
-            <h3 class="concern__title">Manchas e melasma</h3>
-            <p class="concern__voice">“Já gastei em creme e essas manchas não saem com nada.”</p>
-            <p class="concern__answer">Mancha pede constância, clareadores cosméticos certos e proteção solar de verdade, ainda mais com o sol daqui.</p>
+            <h3 class="concern__title">Cravos, oleosidade e poros</h3>
+            <p class="concern__voice">“Minha pele vive oleosa e com cravos, e nada resolve.”</p>
+            <p class="concern__answer">Uma limpeza de pele bem feita, com constância, equilibra a oleosidade e prepara a pele para o resto.</p>
           </li>
           <li class="concern reveal" style="--i:1">
-            <h3 class="concern__title">Acne, cravos e oleosidade</h3>
-            <p class="concern__voice">“Já passei dos trinta e ainda convivo com cravos, oleosidade e espinhas.”</p>
-            <p class="concern__answer">Acne e oleosidade adulta são comuns e pedem cuidado específico: limpeza bem feita, equilíbrio e paciência.</p>
+            <h3 class="concern__title">Marcas de acne e linhas finas</h3>
+            <p class="concern__voice">“A acne passou, mas as marcas e os poros ficaram.”</p>
+            <p class="concern__answer">O microagulhamento trabalha textura, marcas e poros, em sessões no ritmo da sua pele.</p>
           </li>
           <li class="concern reveal" style="--i:2">
             <h3 class="concern__title">Pele cansada, sem viço</h3>
             <p class="concern__voice">“Me vi numa foto e pensei: eu não paro pra me cuidar.”</p>
-            <p class="concern__answer">Às vezes a pele só está pedindo hidratação, estímulo e uma hora que seja só sua.</p>
+            <p class="concern__answer">A revitalização facial hidrata, nutre e recupera a barreira da pele. Às vezes é só disso que ela precisa.</p>
           </li>
           <li class="concern reveal" style="--i:3">
-            <h3 class="concern__title">Flacidez e inchaço</h3>
-            <p class="concern__voice">“Sinto o corpo inchado, pesado, e a pele menos firme do que antes.”</p>
-            <p class="concern__answer">Drenagem, massagem e equipamentos corporais cuidam de circulação, conforto e tônus, de forma gradual e acompanhada.</p>
+            <h3 class="concern__title">Inchaço, tensão e cansaço</h3>
+            <p class="concern__voice">“Sinto o corpo pesado, inchado e cheio de tensão nas costas.”</p>
+            <p class="concern__answer">Drenagem, ventosaterapia e massagem cuidam da circulação, das tensões e do seu descanso.</p>
           </li>
         </ul>
       </div>
     </section>
 
     <!-- ===================== PROTOCOLOS ===================== -->
-    <!-- A CONFIRMAR com a Iza: cada um dos 6 protocolos abaixo (o que ela realmente oferece). Remova ou edite os itens conforme a resposta. -->
+    <!-- Serviços conforme o catálogo oficial da Iza no WhatsApp Business (nov/2026). -->
     <section class="section section--alt" id="protocolos" aria-labelledby="pr-title">
       <div class="container">
         <div class="grid grid--12">
           <div class="col-7">
             <div class="section-head reveal">
-              <span class="eyebrow">Protocolos</span>
-              <h2 id="pr-title">Começa pelo seu objetivo, não pelo aparelho.</h2>
-              <p class="lead">Cada protocolo combina cosméticos e equipamentos escolhidos na avaliação. O nome diz o objetivo; o caminho é definido com você.</p>
+              <span class="eyebrow">Serviços</span>
+              <h2 id="pr-title">Seis cuidados, um plano feito pra você.</h2>
+              <p class="lead">Facial e corporal, no estúdio da Iza. O que faz sentido pra você é definido na avaliação. Em dúvida, toque em “É pra mim?” e pergunte direto.</p>
             </div>
 
             <ol class="protocols">
               <li class="protocol reveal">
+                <div class="protocol__photo">
+                  <picture>
+                    <source srcset="assets/servico-limpeza-300.webp 300w, assets/servico-limpeza-600.webp 600w" sizes="(min-width: 900px) 150px, 104px" type="image/webp">
+                    <img src="assets/servico-limpeza-300.jpg" srcset="assets/servico-limpeza-300.jpg 300w, assets/servico-limpeza-600.jpg 600w" sizes="(min-width: 900px) 150px, 104px" width="300" height="375" alt="Limpeza de pele: algodões sobre o rosto da cliente, com luva branca" loading="lazy" decoding="async">
+                  </picture>
+                </div>
                 <span class="protocol__num" aria-hidden="true">01</span>
-                <div class="protocol__body">
-                  <h3 class="protocol__title">Pele limpa e equilibrada</h3>
-                  <p class="protocol__desc">Limpeza de pele profunda com extração cuidadosa, calmantes e orientação de rotina. O ponto de partida de quase tudo.</p>
-                  <div class="protocol__meta">
-                    <span class="tag">Cravos · oleosidade · primeira vez</span>
-                    <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20o%20protocolo%20Pele%20limpa%20e%20equilibrada%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="protocolo-01">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                  </div>
+                <div class="protocol__head"><h3 class="protocol__title">Limpeza de pele</h3></div>
+                <p class="protocol__desc">Remove impurezas, cravos e células mortas, com extração cuidadosa e calmantes. Ajuda no controle da oleosidade e deixa a pele preparada para os outros cuidados.</p>
+                <div class="protocol__meta">
+                  <span class="tag">Cravos · oleosidade · primeira vez</span>
+                  <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20a%20Limpeza%20de%20pele%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="servico-limpeza">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 </div>
               </li>
               <li class="protocol reveal">
+                <div class="protocol__photo">
+                  <picture>
+                    <source srcset="assets/servico-microagulhamento-300.webp 300w, assets/servico-microagulhamento-600.webp 600w" sizes="(min-width: 900px) 150px, 104px" type="image/webp">
+                    <img src="assets/servico-microagulhamento-300.jpg" srcset="assets/servico-microagulhamento-300.jpg 300w, assets/servico-microagulhamento-600.jpg 600w" sizes="(min-width: 900px) 150px, 104px" width="300" height="375" alt="Bancada com os ativos e as canetas usadas no microagulhamento" loading="lazy" decoding="async">
+                  </picture>
+                </div>
                 <span class="protocol__num" aria-hidden="true">02</span>
-                <div class="protocol__body">
-                  <h3 class="protocol__title">Manchas e melasma</h3>
-                  <p class="protocol__desc">Clareadores cosméticos, peeling superficial quando indicado e fotoproteção de verdade, com acompanhamento. Pensado para o sol daqui.</p>
-                  <div class="protocol__meta">
-                    <span class="tag">Melasma · manchas de sol</span>
-                    <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20o%20protocolo%20Manchas%20e%20melasma%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="protocolo-02">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                  </div>
+                <div class="protocol__head"><h3 class="protocol__title">Microagulhamento</h3></div>
+                <p class="protocol__desc">Microperfurações controladas que estimulam a renovação da pele e a permeação de ativos. Indicado para marcas de acne, poros dilatados, linhas finas e textura.</p>
+                <div class="protocol__meta">
+                  <span class="tag">Marcas de acne · poros · linhas finas</span>
+                  <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20o%20Microagulhamento%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="servico-microagulhamento">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 </div>
               </li>
               <li class="protocol reveal">
+                <div class="protocol__photo">
+                  <picture>
+                    <source srcset="assets/servico-revitalizacao-300.webp 300w, assets/servico-revitalizacao-600.webp 600w" sizes="(min-width: 900px) 150px, 104px" type="image/webp">
+                    <img src="assets/servico-revitalizacao-300.jpg" srcset="assets/servico-revitalizacao-300.jpg 300w, assets/servico-revitalizacao-600.jpg 600w" sizes="(min-width: 900px) 150px, 104px" width="300" height="375" alt="Aplicação de máscara facial com pincel durante a revitalização" loading="lazy" decoding="async">
+                  </picture>
+                </div>
                 <span class="protocol__num" aria-hidden="true">03</span>
-                <div class="protocol__body">
-                  <h3 class="protocol__title">Acne adulta e marcas</h3>
-                  <p class="protocol__desc">Limpeza, ativos reguladores de oleosidade e cuidado com as marcas superficiais, num ritmo que a sua pele acompanha.</p>
-                  <div class="protocol__meta">
-                    <span class="tag">Espinhas · oleosidade · cicatrizes leves</span>
-                    <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20o%20protocolo%20Acne%20adulta%20e%20marcas%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="protocolo-03">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                  </div>
+                <div class="protocol__head"><h3 class="protocol__title">Revitalização facial</h3></div>
+                <p class="protocol__desc">Hidratação, nutrição e recuperação da barreira da pele, com ativos escolhidos para a sua necessidade. Para uma pele mais macia, hidratada e luminosa.</p>
+                <div class="protocol__meta">
+                  <span class="tag">Pele cansada · ressecada · sem viço</span>
+                  <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20a%20Revitaliza%C3%A7%C3%A3o%20facial%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="servico-revitalizacao">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 </div>
               </li>
               <li class="protocol reveal">
+                <div class="protocol__photo">
+                  <picture>
+                    <source srcset="assets/servico-ventosaterapia-300.webp 300w, assets/servico-ventosaterapia-600.webp 600w" sizes="(min-width: 900px) 150px, 104px" type="image/webp">
+                    <img src="assets/servico-ventosaterapia-300.jpg" srcset="assets/servico-ventosaterapia-300.jpg 300w, assets/servico-ventosaterapia-600.jpg 600w" sizes="(min-width: 900px) 150px, 104px" width="300" height="375" alt="Ventosas aplicadas nas costas durante a ventosaterapia" loading="lazy" decoding="async">
+                  </picture>
+                </div>
                 <span class="protocol__num" aria-hidden="true">04</span>
-                <div class="protocol__body">
-                  <h3 class="protocol__title">Viço e firmeza facial</h3>
-                  <p class="protocol__desc">Hidratação profunda, estímulo com equipamentos faciais e massagem para uma pele mais descansada. Ótimo antes de uma data importante.</p>
-                  <div class="protocol__meta">
-                    <span class="tag">Pele cansada · casamento · formatura</span>
-                    <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20o%20protocolo%20Vi%C3%A7o%20e%20firmeza%20facial%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="protocolo-04">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                  </div>
+                <div class="protocol__head"><h3 class="protocol__title">Ventosaterapia</h3></div>
+                <p class="protocol__desc">Ventosas que mobilizam os tecidos e ativam a circulação, aliviando tensões e contraturas. Pode ser combinada com outros cuidados, conforme a avaliação.</p>
+                <div class="protocol__meta">
+                  <span class="tag">Dores musculares · tensão · recuperação</span>
+                  <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20a%20Ventosaterapia%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="servico-ventosaterapia">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 </div>
               </li>
               <li class="protocol reveal">
+                <div class="protocol__photo">
+                  <picture>
+                    <source srcset="assets/servico-massagem-300.webp 300w, assets/servico-massagem-600.webp 600w" sizes="(min-width: 900px) 150px, 104px" type="image/webp">
+                    <img src="assets/servico-massagem-300.jpg" srcset="assets/servico-massagem-300.jpg 300w, assets/servico-massagem-600.jpg 600w" sizes="(min-width: 900px) 150px, 104px" width="300" height="375" alt="Massagem relaxante nas costas, em ambiente de luz baixa" loading="lazy" decoding="async">
+                  </picture>
+                </div>
                 <span class="protocol__num" aria-hidden="true">05</span>
-                <div class="protocol__body">
-                  <h3 class="protocol__title">Corpo leve e firme</h3>
-                  <p class="protocol__desc">Drenagem linfática, inclusive pós-operatória, massagem modeladora e equipamentos corporais para inchaço, celulite e flacidez, conforme a sua avaliação.</p>
-                  <div class="protocol__meta">
-                    <span class="tag">Inchaço · celulite · flacidez</span>
-                    <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20o%20protocolo%20Corpo%20leve%20e%20firme%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="protocolo-05">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                  </div>
+                <div class="protocol__head"><h3 class="protocol__title">Massagem relaxante</h3></div>
+                <p class="protocol__desc">Movimentos suaves e contínuos para soltar as tensões, reduzir o estresse e dar ao corpo uma pausa de verdade. Bem-estar físico e mental.</p>
+                <div class="protocol__meta">
+                  <span class="tag">Estresse · cansaço · uma hora só sua</span>
+                  <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20a%20Massagem%20relaxante%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="servico-massagem">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 </div>
               </li>
               <li class="protocol reveal">
+                <div class="protocol__photo">
+                  <picture>
+                    <source srcset="assets/servico-drenagem-300.webp 300w, assets/servico-drenagem-600.webp 600w" sizes="(min-width: 900px) 150px, 104px" type="image/webp">
+                    <img src="assets/servico-drenagem-300.jpg" srcset="assets/servico-drenagem-300.jpg 300w, assets/servico-drenagem-600.jpg 600w" sizes="(min-width: 900px) 150px, 104px" width="300" height="375" alt="Cliente deitada durante a drenagem linfática" loading="lazy" decoding="async">
+                  </picture>
+                </div>
                 <span class="protocol__num" aria-hidden="true">06</span>
-                <div class="protocol__body">
-                  <h3 class="protocol__title">Pausa e autocuidado</h3>
-                  <p class="protocol__desc">Massagem relaxante ou uma sessão de cuidado facial e corporal, sem pressa, para quem precisa de uma hora só sua.</p>
-                  <div class="protocol__meta">
-                    <span class="tag">Pra quem nunca para</span>
-                    <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20o%20protocolo%20Pausa%20e%20autocuidado%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="protocolo-06">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                  </div>
+                <div class="protocol__head"><h3 class="protocol__title">Drenagem linfática</h3></div>
+                <p class="protocol__desc">Técnica suave que estimula o sistema linfático, ajudando a reduzir o inchaço e a retenção de líquidos. O protocolo é adaptado a cada pessoa.</p>
+                <div class="protocol__meta">
+                  <span class="tag">Inchaço · retenção · leveza</span>
+                  <a class="protocol__link" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vi%20a%20Drenagem%20linf%C3%A1tica%20no%20site%20e%20quero%20saber%20se%20%C3%A9%20pra%20mim." target="_blank" rel="noopener" data-origem="servico-drenagem">É pra mim? <svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 </div>
               </li>
             </ol>
@@ -1184,7 +1217,7 @@ h1 em, h2 em { font-style: italic; font-weight: 300; color: var(--gold-text); }
           <aside class="col-5 reveal" style="--i:1">
             <div class="aside-card">
               <h3>Não sabe por onde começar?</h3>
-              <p>A avaliação define o protocolo. Você só precisa contar o que te incomoda.</p>
+              <p>A avaliação define por onde começar. Você só precisa contar o que te incomoda.</p>
               <a class="btn btn--ghost btn--block" href="https://wa.me/5583996747355?text=Oi%2C%20Iza!%20Vim%20pelo%20site%20e%20n%C3%A3o%20sei%20por%20onde%20come%C3%A7ar.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" data-origem="protocolos-aside">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
                 Agendar avaliação
@@ -1386,7 +1419,7 @@ h1 em, h2 em { font-style: italic; font-weight: 300; color: var(--gold-text); }
           </details>
           <details>
             <summary>Dói ou incomoda?</summary>
-            <div class="faq__a"><p>A maioria dos procedimentos é confortável. Alguns, como a extração na limpeza de pele, podem dar um leve desconforto passageiro. A Iza explica o que esperar antes de começar e ajusta o ritmo ao que você sente.</p></div>
+            <div class="faq__a"><p>A maioria dos cuidados é confortável. A extração na limpeza de pele e o microagulhamento podem incomodar um pouco, de forma passageira. A Iza explica o que esperar antes de começar e ajusta o ritmo ao que você sente.</p></div>
           </details>
           <details>
             <summary>Quanto custa?</summary>
@@ -1395,7 +1428,7 @@ h1 em, h2 em { font-style: italic; font-weight: 300; color: var(--gold-text); }
           </details>
           <details>
             <summary>Quantas sessões vou precisar?</summary>
-            <div class="faq__a"><p>Varia com o objetivo e com a resposta da sua pele. Limpeza e hidratação costumam ser pontuais; manchas, acne e protocolos corporais pedem algumas sessões e constância em casa. Você sai da avaliação com uma estimativa clara.</p></div>
+            <div class="faq__a"><p>Varia com o objetivo. Limpeza de pele, revitalização, massagem e ventosaterapia costumam ser pontuais ou de manutenção; microagulhamento e drenagem linfática pedem algumas sessões. Você sai da avaliação com uma estimativa clara.</p></div>
           </details>
           <details>
             <summary>Como é a higiene e a segurança?</summary>
