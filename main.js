@@ -34,26 +34,30 @@
   var fab = doc.querySelector('.fab');
   var heroCta = doc.querySelector('[data-fab-hide]');
   var finalCta = doc.querySelector('[data-fab-hide-final]');
-  if (fab) {
-    var heroVisible = true, finalVisible = false;
+  if (fab && heroCta) {
+    /* O flutuante só aparece depois que a pessoa passou pelo botão principal do hero
+       e some de novo quando o botão do CTA final está na tela. Checagem direta de posição
+       (um elemento, barata), sincronizada com o scroll via requestAnimationFrame. */
+    var fabTicking = false;
     function updateFab() {
-      fab.classList.toggle('is-visible', !heroVisible && !finalVisible);
+      fabTicking = false;
+      var vh = window.innerHeight || doc.documentElement.clientHeight;
+      var passedHero = heroCta.getBoundingClientRect().bottom < 0;
+      var finalOnScreen = false;
+      if (finalCta) {
+        var fr = finalCta.getBoundingClientRect();
+        finalOnScreen = fr.top < vh && fr.bottom > 0;
+      }
+      fab.classList.toggle('is-visible', passedHero && !finalOnScreen);
     }
-    if ('IntersectionObserver' in window && heroCta) {
-      var fabIo = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          /* o CTA do hero conta como "visível" enquanto estiver na tela OU ainda abaixo dela
-             (a pessoa vai chegar nele rolando); o flutuante só aparece depois de passar por ele */
-          if (e.target === heroCta) heroVisible = e.isIntersecting || e.boundingClientRect.top > 0;
-          if (e.target === finalCta) finalVisible = e.isIntersecting;
-        });
-        updateFab();
-      }, { threshold: 0.2 });
-      fabIo.observe(heroCta);
-      if (finalCta) fabIo.observe(finalCta);
-    } else {
-      fab.classList.add('is-visible');
+    function requestFab() {
+      if (!fabTicking) { fabTicking = true; window.requestAnimationFrame(updateFab); }
     }
+    window.addEventListener('scroll', requestFab, { passive: true });
+    window.addEventListener('resize', requestFab);
+    updateFab();
+  } else if (fab) {
+    fab.classList.add('is-visible');
   }
 
   /* 4. Rastreio de cliques no WhatsApp (GA4 / Meta Pixel, se instalados) */
