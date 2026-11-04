@@ -42,7 +42,9 @@
     if ('IntersectionObserver' in window && heroCta) {
       var fabIo = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.target === heroCta) heroVisible = e.isIntersecting;
+          /* o CTA do hero conta como "visível" enquanto estiver na tela OU ainda abaixo dela
+             (a pessoa vai chegar nele rolando); o flutuante só aparece depois de passar por ele */
+          if (e.target === heroCta) heroVisible = e.isIntersecting || e.boundingClientRect.top > 0;
           if (e.target === finalCta) finalVisible = e.isIntersecting;
         });
         updateFab();
@@ -76,7 +78,24 @@
     });
   });
 
-  /* 6. Ano no rodapé */
+  /* 6. Mapa: só carrega o iframe do Google quando a pessoa toca na fachada */
+  var mapBox = doc.querySelector('.location__map');
+  var mapBtn = doc.querySelector('.map-facade');
+  if (mapBox && mapBtn) {
+    mapBtn.addEventListener('click', function () {
+      if (mapBox.classList.contains('is-loaded')) return;
+      var f = doc.createElement('iframe');
+      f.title = 'Mapa de João Pessoa';
+      f.src = mapBox.getAttribute('data-map-src');
+      f.setAttribute('loading', 'lazy');
+      f.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+      f.setAttribute('allowfullscreen', '');
+      mapBox.appendChild(f);
+      mapBox.classList.add('is-loaded');
+    });
+  }
+
+  /* 7. Ano no rodapé */
   var year = doc.querySelector('[data-year]');
   if (year) year.textContent = String(new Date().getFullYear());
 })();

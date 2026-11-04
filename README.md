@@ -7,18 +7,28 @@ HTML, CSS e JS puros, sem build e sem dependências. Só precisa de hospedagem e
 
 ```
 iza-estetica/
-├── index.html          # landing page
-├── styles.css          # estilos da landing page
-├── main.js             # interações leves (reveal, botão flutuante, FAQ, rastreio)
+├── index.html          # landing page (CSS embutido no <style> do próprio arquivo, por velocidade)
+├── main.js             # interações leves (reveal, botão flutuante, FAQ, mapa, rastreio)
 ├── links/index.html    # página de links para a bio (CSS embutido, carrega sozinha)
 ├── assets/
-│   ├── iza-retrato.jpg / .webp   # foto do hero (recortada do story, 800px — trocar por foto em alta)
-│   ├── iza-perfil.jpg / .webp    # foto secundária do "Sobre" (do perfil do Instagram — trocar)
-│   ├── og-image.jpg              # imagem que aparece ao compartilhar o link (1200×630)
-│   ├── favicon.svg               # ícone da aba
-│   └── apple-touch-icon.png      # ícone no iPhone
+│   ├── fonts/                        # Cormorant Garamond + Jost hospedadas aqui (sem depender do Google)
+│   ├── iza-retrato-400/600/800.*     # foto do hero em 3 tamanhos (recorte do story — trocar por foto em alta)
+│   ├── iza-avatar.*                  # miniatura usada no balão de conversa
+│   ├── iza-perfil.*                  # foto secundária do "Sobre" (do perfil do Instagram — trocar)
+│   ├── og-image.jpg                  # imagem que aparece ao compartilhar o link (1200×630)
+│   ├── favicon.svg / apple-touch-icon.png
 └── README.md
 ```
+
+### Fotos que faltam (pedir para a Iza)
+
+Hoje só existem duas fotos, ambas recortadas em baixa resolução. Para a página ficar completa, pedir **originais, sem filtro, na maior resolução possível** (mandar como documento no WhatsApp, não como foto, para não comprimir):
+
+1. **Retrato vertical** (4:5, mínimo 1200px de largura) dela no estúdio, de frente, com a madeira ripada ao fundo. Vai para o topo da página.
+2. **Uma foto mais espontânea** (sentada, sorrindo) para a seção "Sobre a Iza".
+3. **Três fotos do espaço** para a galeria "O espaço", que já está pronta e oculta no código: a sala de atendimento, ela durante uma sessão (de costas ou com a cliente de olhos fechados, sem mostrar o rosto da cliente) e a bancada com os produtos.
+
+Evitar: fotos de banco de imagens e fotos de pele de outras pessoas tiradas da internet. Além do risco de direito autoral, uma foto de "caso" de outra pessoa ao lado dos protocolos dela pode ser lida como resultado do trabalho dela, o que é propaganda enganosa.
 
 ## Onde está publicado
 
